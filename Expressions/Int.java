@@ -38,4 +38,9 @@ public class Int extends Expression
     this.type = new IntegerType();
     return new ConstraintSet();
   }
+  
+  public String toString()
+  {
+    return this.number.toString();
+  }
 }

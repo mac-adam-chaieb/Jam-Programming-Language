@@ -45,9 +45,4 @@ public class Application extends Expression
     output.add(this.e1.type, new ArrowType(this.e2.type, alpha));
     return output;
   }
-  
-  public String toString()
-  {
-    return "("+this.e1.toString()+")("+this.e2.toString()+")";
-  }
 }

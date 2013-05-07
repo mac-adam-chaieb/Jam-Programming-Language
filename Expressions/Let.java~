@@ -44,9 +44,4 @@ public class Let extends Expression
     output.union(t);
     return output;
   }
-  
-  public String toString()
-  {
-    return "let ("+this.binding.toString()+") in ("+this.e2.toString()+")";
-  }
 }

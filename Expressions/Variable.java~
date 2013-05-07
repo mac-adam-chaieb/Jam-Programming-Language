@@ -39,9 +39,4 @@ public class Variable extends Expression
       this.type = c.getType(this);
     return new ConstraintSet();
   }
-  
-  public String toString()
-  {
-    return this.name;
-  }
 }

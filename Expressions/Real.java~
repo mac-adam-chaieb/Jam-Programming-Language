@@ -36,9 +36,4 @@ public class Real extends Expression
     this.type = new RealType();
     return new ConstraintSet();
   }
-  
-  public String toString()
-  {
-    return this.real.toString();
-  }
 }

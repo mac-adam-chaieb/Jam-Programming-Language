@@ -8,9 +8,4 @@ public class Binding
     this.variable = variable;
     this.expression = expression;
   }
-  
-  public String toString()
-  {
-    return this.variable.toString()+" = "+this.expression.toString();
-  }
 }

@@ -12,5 +12,4 @@ public abstract class Expression
   abstract public ArrayList<Variable> getFreeVariables();
   abstract public Expression substitute(Expression sub, Variable variable);
   abstract public ConstraintSet infer(TypeContext c);
-  abstract public String toString();
 }

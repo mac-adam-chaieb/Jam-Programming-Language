@@ -51,9 +51,4 @@ public class If extends Expression
     output.add(this.e1.type,this.e2.type);
     return output;
   }
-  
-  public String toString()
-  {
-    return "if ("+this.condition.toString()+") then ("+this.e1.toString()+") else ("+this.e2.toString()+")";
-  }
 }

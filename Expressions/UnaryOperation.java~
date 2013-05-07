@@ -39,9 +39,4 @@ public class UnaryOperation extends Expression
     output.union(s);
     return output;
   }
-  
-  public String toString()
-  {
-    return this.operator.op+"("+this.e.toString()+")";
-  }
 }

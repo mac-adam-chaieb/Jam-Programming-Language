@@ -1,18 +1,20 @@
-import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 
-public class Real extends Expression
+public class Int extends Expression
 {
-  public final BigDecimal real;
+  public BigInteger number = BigInteger.ZERO;
   
-  public Real(String real)
+  public Int(){}
+  
+  public Int(String number)
   {
-    this.real = new BigDecimal(real);
+    this.number = new BigInteger(number);
   }
   
-  public Real(BigDecimal real)
+  public Int(BigInteger number)
   {
-    this.real = real;
+    this.number = number;
   }
   
   public Value evaluate()
@@ -33,12 +35,7 @@ public class Real extends Expression
   
   public ConstraintSet infer(TypeContext c)
   {
-    this.type = new RealType();
+    this.type = new IntegerType();
     return new ConstraintSet();
-  }
-  
-  public String toString()
-  {
-    return this.real.toString();
   }
 }

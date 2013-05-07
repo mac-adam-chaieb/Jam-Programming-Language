@@ -84,9 +84,4 @@ public class BinaryOperation extends Expression
     output.union(t);
     return output;
   }
-  
-  public String toString()
-  {
-    return this.e1.toString()+this.operator.op+this.e2.toString();
-  }
 }

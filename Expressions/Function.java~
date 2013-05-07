@@ -40,9 +40,4 @@ public class Function extends Expression
     output.union(s);
     return output;
   }
-  
-  public String toString()
-  {
-    return "fn "+this.input.toString()+" => "+this.formula.toString();
-  }
 }

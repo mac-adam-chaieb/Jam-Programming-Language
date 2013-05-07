@@ -41,11 +41,4 @@ public class Boolean extends Expression
     this.type = new BooleanType();
     return new ConstraintSet();
   }
-  
-  public String toString()
-  {
-    if(this.bool == true)
-      return "true";
-    else return "false";
-  }
 }

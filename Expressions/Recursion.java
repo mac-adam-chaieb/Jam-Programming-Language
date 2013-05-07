@@ -39,4 +39,9 @@ public class Recursion extends Expression
     output.union(s);
     return output;
   }
+  
+  public String toString()
+  {
+    return "rec "+this.function.toString()+" => "+this.formula.toString();
+  }
 }
