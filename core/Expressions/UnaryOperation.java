@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 /*
  * @author Mohamed Adam Chaieb
+ * 
+ * This class represents the unary operation expression (op e)
  * */
 
 public class UnaryOperation extends Expression

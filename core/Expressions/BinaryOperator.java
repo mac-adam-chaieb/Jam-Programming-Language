@@ -1,20 +1,26 @@
 /*
  * @author Mohamed Adam Chaieb
+ * 
+ * This enumerable data type represents the valid binary operators in Jam.
  * */
 
-public class BinaryOperator
+public enum BinaryOperator
 {
+  EQUALS("=?"), PLUS("+"), MINUS("-"), MULTIPLY("*"), DIVIDE("/"), MOD("mod"), LESS("<"), GREATER(">"), POW("**");
   public String op;
   
-  public BinaryOperator(String op)
+  private BinaryOperator(String op)
   {
-    //if operator is valid
-    if(op.equals("=?") || op.equals("+") || op.equals("/") || op.equals("mod") || op.equals("-") || op.equals("*") || op.equals("<") || op.equals(">"))
-      this.op = op;
+    this.op = op;
   }
   
   public boolean equals(BinaryOperator other)
   {
     return this.op.equals(other.op);
+  }
+  
+  public String toString()
+  {
+    return this.op;
   }
 }

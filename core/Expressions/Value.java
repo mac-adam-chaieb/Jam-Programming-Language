@@ -3,6 +3,8 @@ import java.math.BigInteger;
 
 /*
  * @author Mohamed Adam Chaieb
+ * 
+ * This class represents the valid terminal values in Jam: integers,  real numbers, boolean values and functions.
  * */
 
 public class Value extends Int

@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 /*
  * @author Mohamed Adam Chaieb
+ * 
+ * This class represents the list type variable, e.g. {INT,INT,REAL,BOOLEAN} is a type
  * */
 
 public class ListType extends Type

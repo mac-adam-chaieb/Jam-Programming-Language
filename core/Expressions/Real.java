@@ -3,11 +3,18 @@ import java.util.ArrayList;
 
 /*
  * @author Mohamed Adam Chaieb
+ * 
+ * This class represents the real number expression r
  * */
 
 public class Real extends Expression
 {
   public final BigDecimal real;
+  public static final Real TWO = new Real(new BigDecimal("2"));
+  public static final Real ONE = new Real(BigDecimal.ONE);
+  public static final Real ZERO = new Real(BigDecimal.ZERO);
+  public static final Real PI = new Real(new BigDecimal("3.141592653589793238462643383279"));
+  public static final Real E = new Real(new BigDecimal("2.718281828459045235360287471352"));
   
   public Real(String real)
   {
@@ -95,5 +102,15 @@ public class Real extends Expression
   public Real min(Real b)
   {
     return new Real(this.real.min(b.real));
+  }
+  
+  public boolean greaterThan(Real b)
+  {
+    return (this.real.compareTo(b.real) == 1);
+  }
+  
+  public boolean lessThan(Real b)
+  {
+    return (this.real.compareTo(b.real) == -1);
   }
 }

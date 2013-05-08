@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 /*
  * @author Mohamed Adam Chaieb
+ * 
+ * This class represents the recursive function expression (rec f => formula)
  * */
 
 public class Recursion extends Expression

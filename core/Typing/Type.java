@@ -1,5 +1,7 @@
 /*
  * @author Mohamed Adam Chaieb
+ * 
+ * This abstract class represents all types in Jam.
  * */
 
 public abstract class Type
@@ -11,7 +13,7 @@ public abstract class Type
   
   public Type(){}
   
-  //substitutes t with sub
-  abstract public Type substitute(Type sub, Type t);
-  abstract public boolean equals(Type other);
+  
+  abstract public Type substitute(Type sub, Type t); //substitutes the type variable t with sub
+  abstract public boolean equals(Type other); //returns true if this and other are equal
 }

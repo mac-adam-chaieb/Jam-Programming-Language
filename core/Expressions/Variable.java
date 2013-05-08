@@ -2,11 +2,14 @@ import java.util.ArrayList;
 
 /*
  * @author Mohamed Adam Chaieb
+ * 
+ * This class represents variables in Jam.
  * */
 
 public class Variable extends Expression
 {
   private String name;
+  private String[] restricted = {"if", "then", "else", "end", "fn", "let", "in", "rec"};//restricted variable names
   
   public Variable(String name)
   {

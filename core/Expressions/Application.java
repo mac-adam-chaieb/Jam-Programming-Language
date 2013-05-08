@@ -31,7 +31,6 @@ public class Application extends Expression
     return new Application(this.e1.substitute(sub, variable), this.e2.substitute(sub, variable));
   }
   
-  //might need to get fixed
   public Value evaluate()
   {
     return new Value(this.e1.evaluate().function.formula.substitute(this.e2.evaluate(),this.e1.evaluate().function.input).evaluate());

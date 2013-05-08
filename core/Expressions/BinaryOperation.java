@@ -24,34 +24,38 @@ public class BinaryOperation extends Expression
   
   public Value evaluate()
   {
-    if(this.operator.op.equals("+") && e1 instanceof Int && e2 instanceof Int)
-      return new Value(new Int(new BigInteger(this.e1.expression).add(new BigInteger(this.e2.expression))));
-    if(this.operator.op.equals("-") && e1 instanceof Int && e2 instanceof Int)
-      return new Value(new Int(new BigInteger(this.e1.expression).subtract(new BigInteger(this.e2.expression))));
-    if(this.operator.op.equals("+") && e1 instanceof Real && e2 instanceof Real)
-      return new Value(new Real(new BigDecimal(this.e1.expression).add(new BigDecimal(this.e2.expression))));
-    if(this.operator.op.equals("-") && e1 instanceof Real && e2 instanceof Real)
-      return new Value(new Real(new BigDecimal(this.e1.expression).add(new BigDecimal(this.e2.expression))));
-    if(this.operator.op.equals("*") && e1 instanceof Int && e2 instanceof Int)
-      return new Value(new Int(new BigInteger(this.e1.expression).multiply(new BigInteger(this.e2.expression))));
-    if(this.operator.op.equals("*") && e1 instanceof Real && e2 instanceof Real)
-      return new Value(new Real(new BigDecimal(this.e1.expression).multiply(new BigDecimal(this.e2.expression))));
-    if(this.operator.op.equals("=?") && e1 instanceof Int && e2 instanceof Int)
-      return new Value(new Boolean(new BigInteger(e1.expression).compareTo(new BigInteger(e2.expression)) == 0));
-    if(this.operator.op.equals("=?") && e1 instanceof Real && e2 instanceof Real)
-      return new Value(new Boolean(new BigDecimal(e1.expression).compareTo(new BigDecimal(e2.expression)) == 0));
-    if(this.operator.op.equals("<") && e1 instanceof Int && e2 instanceof Int)
-      return new Value(new Boolean(new BigInteger(e1.expression).compareTo(new BigInteger(e2.expression)) == -1));
-    if(this.operator.op.equals("<") && e1 instanceof Real && e2 instanceof Real)
-      return new Value(new Boolean(new BigDecimal(e1.expression).compareTo(new BigDecimal(e2.expression)) == -1));
-    if(this.operator.op.equals(">") && e1 instanceof Int && e2 instanceof Int)
-      return new Value(new Boolean(new BigInteger(e1.expression).compareTo(new BigInteger(e2.expression)) == 1));
-    if(this.operator.op.equals(">") && e1 instanceof Real && e2 instanceof Real)
-      return new Value(new Boolean(new BigDecimal(e1.expression).compareTo(new BigDecimal(e2.expression)) == 1));
-    if(this.operator.op.equals("mod") && e1 instanceof Int && e2 instanceof Int)
-      return new Value(new Int(new BigInteger(e1.expression).remainder(new BigInteger(e2.expression))));
-    if(this.operator.op.equals("mod") && e1 instanceof Real && e2 instanceof Real)
-      return new Value(new Real(new BigDecimal(e1.expression).remainder(new BigDecimal(e2.expression))));
+    Int int1 = (Int)e1;
+    Int int2 = (Int)e2;
+    Real real1 = (Real)e1;
+    Real real2 = (Real)e1;
+    if(this.operator.equals(BinaryOperator.PLUS) && e1 instanceof Int && e2 instanceof Int)
+      return new Value(int1.add(int2));
+    if(this.operator.equals(BinaryOperator.MINUS) && e1 instanceof Int && e2 instanceof Int)
+      return new Value(int1.add(int2));
+    if(this.operator.equals(BinaryOperator.PLUS) && e1 instanceof Real && e2 instanceof Real)
+      return new Value(real1.add(real2));
+    if(this.operator.equals(BinaryOperator.MINUS) && e1 instanceof Real && e2 instanceof Real)
+      return new Value(real1.add(real2));
+    if(this.operator.equals(BinaryOperator.MULTIPLY) && e1 instanceof Int && e2 instanceof Int)
+      return new Value(int1.multiply(int2));
+    if(this.operator.equals(BinaryOperator.MULTIPLY) && e1 instanceof Real && e2 instanceof Real)
+      return new Value(real1.multiply(real2));
+    if(this.operator.equals(BinaryOperator.EQUALS) && e1 instanceof Int && e2 instanceof Int)
+      return new Value(new Boolean(int1.equals(int2)));
+    if(this.operator.equals(BinaryOperator.EQUALS) && e1 instanceof Real && e2 instanceof Real)
+      return new Value(new Boolean(real1.equals(real2)));
+    if(this.operator.equals(BinaryOperator.LESS) && e1 instanceof Int && e2 instanceof Int)
+      return new Value(new Boolean(int1.lessThan(int2)));
+    if(this.operator.equals(BinaryOperator.LESS) && e1 instanceof Real && e2 instanceof Real)
+      return new Value(new Boolean(real1.lessThan(real2)));
+    if(this.operator.equals(BinaryOperator.GREATER) && e1 instanceof Int && e2 instanceof Int)
+      return new Value(new Boolean(int1.greaterThan(int2)));
+    if(this.operator.equals(BinaryOperator.GREATER) && e1 instanceof Real && e2 instanceof Real)
+      return new Value(new Boolean(real1.greaterThan(real2)));
+    if(this.operator.equals(BinaryOperator.MOD) && e1 instanceof Int && e2 instanceof Int)
+      return new Value(int1.mod(int2));
+    if(this.operator.equals(BinaryOperator.MOD) && e1 instanceof Real && e2 instanceof Real)
+      return new Value(real1.mod(real2));
     else return (new BinaryOperation(this.e1.evaluate(), this.e2.evaluate(), this.operator)).evaluate();
   }
   

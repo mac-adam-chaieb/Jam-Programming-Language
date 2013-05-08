@@ -1,5 +1,7 @@
 /*
  * @author Mohamed Adam Chaieb
+ * 
+ * This class represents the real number type
  * */
 
 public class RealType extends Type

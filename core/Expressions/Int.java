@@ -99,6 +99,16 @@ public class Int extends Expression
     return new Int(this.number.min(b.number));
   }
   
+  public boolean greaterThan(Int b)
+  {
+    return (this.number.compareTo(b.number) == 1);
+  }
+  
+  public boolean lessThan(Int b)
+  {
+    return (this.number.compareTo(b.number) == -1);
+  }
+  
   public boolean even()
   {
     return (this.number.mod(new BigInteger("2")).compareTo(BigInteger.ZERO) == 0);

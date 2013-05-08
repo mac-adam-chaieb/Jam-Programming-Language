@@ -2,6 +2,9 @@ import java.util.HashMap;
 
 /*
  * @author Mohamed Adam Chaieb
+ * 
+ * This class represents the type context, that associates each variable in the program environment
+ * to a type. It internally uses a HashMap.
  * */
 
 public class TypeContext
