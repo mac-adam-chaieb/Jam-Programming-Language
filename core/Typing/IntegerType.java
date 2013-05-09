@@ -7,10 +7,17 @@
 public class IntegerType extends Type
 {
   public Type substitute(Type sub, Type t)
-  {return this;}
+  {
+    return this;
+  }
   
   public boolean equals(Type other)
   {
     return (other instanceof IntegerType);
+  }
+  
+  public String toString()
+  {
+    return "integer";
   }
 }

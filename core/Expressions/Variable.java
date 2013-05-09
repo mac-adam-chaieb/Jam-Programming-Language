@@ -51,4 +51,12 @@ public class Variable extends Expression
   {
     return this.name;
   }
+  
+  public static boolean isAllowed(String name)
+  {
+    for(Keyword s : Keyword.values())
+      if(name.equalsIgnoreCase(s.toString()))
+      return false;
+    return true;
+  }
 }

@@ -9,8 +9,8 @@ import java.util.HashMap;
 
 public class Boolean extends Expression
 {
-  public final boolean TRUE = true;
-  public final boolean FALSE = false;
+  public final static Boolean TRUE = new Boolean(true);
+  public final static Boolean FALSE = new Boolean(false);
   public boolean bool;
   
   public Boolean(String b)
@@ -19,11 +19,13 @@ public class Boolean extends Expression
       this.bool = true;
     else if (b.equals("false"))
       this.bool = false;
+    this.freeVariables.addAll(this.getFreeVariables());
   }
   
   public Boolean(boolean bool)
   {
     this.bool = bool;
+    this.freeVariables.addAll(this.getFreeVariables());
   }
   
   public ArrayList<Variable> getFreeVariables()
@@ -53,5 +55,10 @@ public class Boolean extends Expression
     if(this.bool == true)
       return "true";
     else return "false";
+  }
+  
+  public static boolean isBoolean(String in)
+  {
+    return (in.equals("true") || in.equals("false"));
   }
 }

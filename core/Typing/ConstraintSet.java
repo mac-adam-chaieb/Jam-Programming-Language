@@ -8,9 +8,13 @@ import java.util.HashMap;
 
 public class ConstraintSet
 {
-  public HashMap<Type,Type> constraints = new HashMap<Type,Type>();
+  public HashMap<Type,Type> constraints;
+  public static final ConstraintSet EMPTY = new ConstraintSet();
   
-  public ConstraintSet(){}
+  public ConstraintSet()
+  {
+    this.constraints = new HashMap<Type,Type>();
+  }
   
   public void add(Type var1, Type var2)
   {
@@ -66,6 +70,20 @@ public class ConstraintSet
     {
       s.substitute(sub, t);
       this.constraints.get(s).substitute(sub, t);
+    }
+  }
+  
+  public String toString()
+  {
+    if(this.constraints.isEmpty())
+      return "{}";
+    else
+    {
+      String output = "{";
+      for(Type t : this.constraints.keySet())
+        output += t.toString()+" = "+this.constraints.get(t).toString()+",";
+      output += "}";
+      return new StringBuilder(output).deleteCharAt(output.length()-2).toString();
     }
   }
 }

@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 public class If extends Expression
 {
-  private Expression condition;
-  private Expression e1;
-  private Expression e2;
+  public Expression condition;
+  public Expression e1;
+  public Expression e2;
   
   public If(Expression condition, Expression e1, Expression e2)
   {
@@ -22,11 +22,10 @@ public class If extends Expression
   
   public Value evaluate()
   {
-    if(condition.evaluate().bool = true)
+    if(condition.evaluate().bool == true)
       return e1.evaluate();
-    else if(condition.evaluate().bool = false)
+    else
       return e2.evaluate();
-    else return null;
   }
   
   public ArrayList<Variable> getFreeVariables()

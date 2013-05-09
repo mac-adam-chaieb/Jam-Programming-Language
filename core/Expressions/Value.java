@@ -13,7 +13,8 @@ public class Value extends Int
   public BigDecimal real;
   public boolean bool;
   public Function function;
-  public Type type;
+  public boolean isEmpty;
+  public Type type = Type.UNKNOWN;
   
   public Value(Int n)
   {
@@ -37,11 +38,19 @@ public class Value extends Int
   {
     this.function = f;
     this.type = f.type;
+    System.out.println("Function value of type: "+this.type);
+  }
+  
+  public Value(Empty empty)
+  {
+    this.isEmpty = true;
   }
   
   public String toString()
   {
-    if(this.type.equals(Type.INTEGER))
+    if(this.isEmpty)
+      return "";
+    else if(this.type.equals(Type.INTEGER))
       return this.number.toString();
     else if(this.type.equals(Type.REAL))
       return this.real.toString();

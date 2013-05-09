@@ -25,9 +25,16 @@ public class AlphaType extends Type
   //equals method: two generic types are equal if they have the same code, e.g alpha = alpha but alpha != beta
   public boolean equals(Type other)
   {
-    AlphaType t = (AlphaType)other;
     if(other instanceof AlphaType)
+    {
+      AlphaType t = (AlphaType)other;
       return (t.code == this.code);
+    }
     else return false;
+  }
+  
+  public String toString()
+  {
+    return (char)(97+this.code)+"";
   }
 }

@@ -9,9 +9,9 @@ import java.util.ArrayList;
 public abstract class Expression
 {
   //fields
-  public String expression; //string representation of the expression
   public ArrayList<Variable> freeVariables = new ArrayList<Variable>(); //list of free variables of the expression
   public Type type; //type of this expression
+  public static final Expression EMPTY = new Empty(); //represents the empty expression
   
   //methods
   abstract public Value evaluate(); //returns the value that the expression evaluates to

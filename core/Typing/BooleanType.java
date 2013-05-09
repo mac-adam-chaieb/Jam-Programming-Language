@@ -15,4 +15,9 @@ public class BooleanType extends Type
   {
     return (other instanceof BooleanType);
   }
+  
+  public String toString()
+  {
+    return "boolean";
+  }
 }

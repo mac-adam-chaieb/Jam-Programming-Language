@@ -13,6 +13,7 @@ public class Binding
   {
     this.variable = variable;
     this.expression = expression;
+    this.variable.type = this.expression.type;
   }
   
   public String toString()

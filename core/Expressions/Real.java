@@ -19,11 +19,13 @@ public class Real extends Expression
   public Real(String real)
   {
     this.real = new BigDecimal(real);
+    this.freeVariables.addAll(this.getFreeVariables());
   }
   
   public Real(BigDecimal real)
   {
     this.real = real;
+    this.freeVariables.addAll(this.getFreeVariables());
   }
   
   public Value evaluate()
@@ -102,6 +104,16 @@ public class Real extends Expression
   public Real min(Real b)
   {
     return new Real(this.real.min(b.real));
+  }
+  
+  public static boolean isReal(String input)
+  {
+    try
+    {
+      Double.parseDouble(input);
+      return true;
+    }
+    catch(Exception e){return false;}
   }
   
   public boolean greaterThan(Real b)

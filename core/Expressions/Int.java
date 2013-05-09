@@ -19,11 +19,13 @@ public class Int extends Expression
   public Int(String number)
   {
     this.number = new BigInteger(number);
+    this.freeVariables.addAll(this.getFreeVariables());
   }
   
   public Int(BigInteger number)
   {
     this.number = number;
+    this.freeVariables.addAll(this.getFreeVariables());
   }
   
   public Value evaluate()
@@ -97,6 +99,16 @@ public class Int extends Expression
   public Int min(Int b)
   {
     return new Int(this.number.min(b.number));
+  }
+  
+  public static boolean isInt(String input)
+  {
+    try
+    {
+      Integer.parseInt(input);
+      return true;
+    }
+    catch(Exception e){return false;}
   }
   
   public boolean greaterThan(Int b)

@@ -18,10 +18,9 @@ public class Let extends Expression
     this.freeVariables.addAll(this.getFreeVariables());
   }
   
-  //needs to be fixed
   public Value evaluate()
   {
-    return e2.substitute(this.binding.expression.evaluate(),this.binding.variable).evaluate();
+    return this.e2.substitute(this.binding.expression.evaluate(),this.binding.variable).evaluate();
   }
   
   public ArrayList<Variable> getFreeVariables()

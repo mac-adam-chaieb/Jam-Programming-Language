@@ -10,6 +10,7 @@ import java.util.HashMap;
 public class TypeContext
 {
   public HashMap<Variable,Type> context;
+  public static final TypeContext EMPTY = new TypeContext();
   
   public TypeContext()
   {

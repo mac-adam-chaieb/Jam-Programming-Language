@@ -25,9 +25,9 @@ public class ListType extends Type
   
   public boolean equals(Type other)
   {
-    ListType t = (ListType)other;
-    if(other.getClass() == ListType.class)
+    if(other instanceof ListType)
     {
+      ListType t = (ListType)other;
       if(t.typeList.size() == this.typeList.size())
       {
         for(int i = 0;i<this.typeList.size();i++)
@@ -39,5 +39,14 @@ public class ListType extends Type
       }
     }
     return false;
+  }
+  
+  public String toString()
+  {
+    String output = "{";
+    for(int i = 0;i<typeList.size()-1;i++)
+      output += this.typeList.get(i).toString()+",";
+    output += this.typeList.get(this.typeList.size()-1)+"}";
+    return output;
   }
 }

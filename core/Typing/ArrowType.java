@@ -22,9 +22,16 @@ public class ArrowType extends Type
   
   public boolean equals(Type other)
   {
-    ArrowType t = (ArrowType)other;
     if(other instanceof ArrowType)
+    {
+      ArrowType t = (ArrowType)other;
       return (this.inputType.equals(t.inputType) && this.outputType.equals(t.outputType));
+    }
     else return false;
+  }
+  
+  public String toString()
+  {
+    return this.inputType.toString()+" => "+this.outputType.toString();
   }
 }

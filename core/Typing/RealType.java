@@ -15,4 +15,9 @@ public class RealType extends Type
   {
     return (other instanceof RealType);
   }
+  
+  public String toString()
+  {
+    return "real";
+  }
 }
