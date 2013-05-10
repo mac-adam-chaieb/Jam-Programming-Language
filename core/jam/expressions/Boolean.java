@@ -1,3 +1,6 @@
+package core.jam.expressions;
+
+import core.jam.typing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 

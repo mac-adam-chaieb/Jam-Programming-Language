@@ -1,3 +1,7 @@
+package core.jam.parser;
+
+import core.jam.expressions.*;
+import core.jam.typing.*;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -47,8 +51,8 @@ public class Parser
       output = new Int(in);
     else if(Real.isReal(input))
       output = new Real(in);
-    else if(Boolean.isBoolean(input))
-      output = new Boolean(in);
+    else if(core.jam.expressions.Boolean.isBoolean(input))
+      output = new core.jam.expressions.Boolean(in);
     else if(input.startsWith("fn"))
     {
       Variable var = new Variable(input.substring(3,input.indexOf("=>")).trim());

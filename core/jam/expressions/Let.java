@@ -1,3 +1,6 @@
+package core.jam.expressions;
+
+import core.jam.typing.*;
 import java.util.ArrayList;
 
 /*
@@ -20,7 +23,8 @@ public class Let extends Expression
   
   public Value evaluate()
   {
-    return this.e2.substitute(this.binding.expression.evaluate(),this.binding.variable).evaluate();
+    Expression expression = this.e2.substitute(this.binding.expression.evaluate(),this.binding.variable);
+    return expression.evaluate();
   }
   
   public ArrayList<Variable> getFreeVariables()

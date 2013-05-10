@@ -1,3 +1,6 @@
+package core.jam.typing;
+
+import core.jam.expressions.*;
 /*
  * @author Mohamed Adam Chaieb
  * 

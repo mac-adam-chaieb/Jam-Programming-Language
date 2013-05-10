@@ -1,3 +1,5 @@
+package core.jam.expressions;
+
 /*
  * @author Mohamed Adam Chaieb
  * 

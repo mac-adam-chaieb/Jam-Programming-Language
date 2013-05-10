@@ -1,3 +1,6 @@
+package core.jam.typing;
+
+import core.jam.expressions.*;
 import java.util.HashMap;
 
 /*

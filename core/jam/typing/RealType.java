@@ -1,10 +1,13 @@
+package core.jam.typing;
+
+import core.jam.expressions.*;
 /*
  * @author Mohamed Adam Chaieb
  * 
- * This class represents the boolean type bool
+ * This class represents the real number type
  * */
 
-public class BooleanType extends Type
+public class RealType extends Type
 {
   public Type substitute(Type sub, Type t)
   {
@@ -13,11 +16,11 @@ public class BooleanType extends Type
   
   public boolean equals(Type other)
   {
-    return (other instanceof BooleanType);
+    return (other instanceof RealType);
   }
   
   public String toString()
   {
-    return "boolean";
+    return "real";
   }
 }

@@ -1,19 +1,22 @@
+package core.jam.expressions;
+
+import core.jam.typing.*;
 import java.util.ArrayList;
 
 /*
  * @author Mohamed Adam Chaieb
  * 
- * This class represents the recursive function expression (rec f => formula)
+ * This class represents the function expression (fn var => formula)
  * */
 
-public class Recursion extends Expression
+public class Function extends Expression
 {
-  public Variable function;
+  public Variable input;
   public Expression formula;
   
-  public Recursion(Variable function, Expression formula)
+  public Function(Variable input, Expression formula)
   {
-    this.function = function;
+    this.input = input;
     this.formula = formula;
     this.freeVariables.addAll(this.getFreeVariables());
   }
@@ -22,24 +25,25 @@ public class Recursion extends Expression
   {
     ArrayList<Variable> freeVariables = new ArrayList<Variable>();
     freeVariables.addAll(this.formula.getFreeVariables());
-    freeVariables.remove(this.function);
+    freeVariables.remove(this.input);
     return freeVariables;
   }
   
+  //we assume input variable is not equal to input, and that input variable is not a free variable of the input expression
   public Expression substitute(Expression sub, Variable variable)
   {
-    return new Recursion(this.function, formula.substitute(sub,variable));
+    return new Function(this.input,formula.substitute(sub,variable));
   }
   
   public Value evaluate()
   {
-    return this.formula.substitute(new Recursion(this.function, this.formula),this.function).evaluate();
+    return new Value(this);
   }
   
   public ConstraintSet infer(TypeContext c)
   {
     Type alpha = new AlphaType(0);
-    ConstraintSet s = this.formula.infer(c.augment(this.function, alpha));
+    ConstraintSet s = this.formula.infer(c.augment(this.input, alpha));
     ConstraintSet output = new ConstraintSet();
     this.type = new ArrowType(alpha, this.formula.type);
     output.union(s);
@@ -48,6 +52,6 @@ public class Recursion extends Expression
   
   public String toString()
   {
-    return "rec "+this.function.toString()+" => "+this.formula.toString();
+    return "fn "+this.input.toString()+" => "+this.formula.toString();
   }
 }
