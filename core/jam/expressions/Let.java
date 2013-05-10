@@ -23,8 +23,7 @@ public class Let extends Expression
   
   public Value evaluate()
   {
-    Expression expression = this.e2.substitute(this.binding.expression.evaluate(),this.binding.variable);
-    return expression.evaluate();
+    return this.e2.substitute(this.binding.expression.evaluate(), this.binding.variable).evaluate();
   }
   
   public ArrayList<Variable> getFreeVariables()

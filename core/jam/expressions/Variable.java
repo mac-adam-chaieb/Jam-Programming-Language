@@ -28,7 +28,7 @@ public class Variable extends Expression
   
   public Value evaluate()
   {
-    return new Value(new Boolean("true"));
+    return new Value<Boolean>(new Boolean("true"));
   }
   
   public Expression substitute(Expression sub, Variable variable)

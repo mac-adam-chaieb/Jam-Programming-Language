@@ -23,7 +23,7 @@ public class Empty extends Expression
   
   public Value evaluate()
   {
-    return new Value(this);
+    return new Value<Empty>(this);
   }
   
   public ConstraintSet infer(TypeContext t)
@@ -34,5 +34,10 @@ public class Empty extends Expression
   public Expression substitute(Expression sub, Variable variable)
   {
     return this;
+  }
+  
+  public boolean equals(Expression other)
+  {
+    return (other instanceof Empty);
   }
 }

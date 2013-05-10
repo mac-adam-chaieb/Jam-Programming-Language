@@ -33,7 +33,7 @@ public class Real extends Expression
   
   public Value evaluate()
   {
-    return new Value(this);
+    return new Value<Real>(this);
   }
   
   public ArrayList<Variable> getFreeVariables()

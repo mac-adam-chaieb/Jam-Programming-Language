@@ -39,7 +39,7 @@ public class Boolean extends Expression
   
   public Value evaluate()
   {
-    return new Value(this);
+    return new Value<Boolean>(this);
   }
   
   public Expression substitute(Expression sub, Variable variable)
@@ -63,5 +63,12 @@ public class Boolean extends Expression
   public static boolean isBoolean(String in)
   {
     return (in.equals("true") || in.equals("false"));
+  }
+  
+  public boolean equals(Expression other)
+  {
+    if(other instanceof Boolean)
+      return (this.bool == ((Boolean)other).bool);
+    else return false;
   }
 }

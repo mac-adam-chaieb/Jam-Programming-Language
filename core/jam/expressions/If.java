@@ -25,10 +25,17 @@ public class If extends Expression
   
   public Value evaluate()
   {
-    if(condition.evaluate().bool == true)
-      return e1.evaluate();
-    else
-      return e2.evaluate();
+    Object e = condition.evaluate().value;
+    if(e instanceof core.jam.expressions.Boolean)
+    {
+      Boolean b = (Boolean)e;
+      if(b.equals(Boolean.TRUE))
+        return e1.evaluate();
+      else
+        return e2.evaluate();
+    }
+    //this should return a type error because condition HAS to be a boolean
+    else return null;
   }
   
   public ArrayList<Variable> getFreeVariables()

@@ -33,7 +33,7 @@ public class Int extends Expression
   
   public Value evaluate()
   {
-    return new Value(this);
+    return new Value<Int>(this);
   }
   
   public ArrayList<Variable> getFreeVariables()

@@ -37,7 +37,7 @@ public class Function extends Expression
   
   public Value evaluate()
   {
-    return new Value(this);
+    return new Value<Function>(this);
   }
   
   public ConstraintSet infer(TypeContext c)

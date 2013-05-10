@@ -36,7 +36,13 @@ public class Application extends Expression
   
   public Value evaluate()
   {
-    return new Value(this.e1.evaluate().function.formula.substitute(this.e2.evaluate(),this.e1.evaluate().function.input).evaluate());
+    Expression e = (Expression)this.e1.evaluate().value;
+    if(e instanceof Function)
+    {
+      Function f = (Function)e;
+      return new Value(f.formula.substitute(this.e2.evaluate(), f.input).evaluate());
+    }
+    else return null;
   }
   
   public ConstraintSet infer(TypeContext c)
