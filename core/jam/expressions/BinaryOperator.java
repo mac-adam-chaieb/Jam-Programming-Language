@@ -8,7 +8,8 @@ package core.jam.expressions;
 
 public enum BinaryOperator
 {
-  EQUALS("=?"), PLUS("+"), MINUS("-"), MULTIPLY("*"), DIVIDE("/"), MOD("mod"), LESS("<"), GREATER(">"), POW("**");
+  //ordered by increasing priority
+  EQUALS("=?"), LESS("<"), GREATER(">"), MOD("mod"), PLUS("+"), MINUS("-"), MULTIPLY("*"), DIVIDE("/"), POW("**");
   public String op;
   
   private BinaryOperator(String op)
@@ -24,5 +25,31 @@ public enum BinaryOperator
   public String toString()
   {
     return this.op;
+  }
+  
+  //returns the index of the operator with lowest priority
+  public static int index(String in)
+  {
+    for(BinaryOperator o : BinaryOperator.values())
+      if(in.contains(o.op))
+      return in.indexOf(o.op);
+    return -1;
+  }
+  
+  //returns true if the input string starts with an operator
+  public static boolean startsWithOperator(String in)
+  {
+    for(BinaryOperator o : BinaryOperator.values())
+      if(in.startsWith(o.toString()))
+        return true;
+    return false;
+  }
+  
+  public static BinaryOperator getOperatorAt(int index, String in)
+  {
+    for(BinaryOperator o : BinaryOperator.values())
+      if(in.startsWith(o.op, index))
+      return o;
+    return null;
   }
 }

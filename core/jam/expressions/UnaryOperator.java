@@ -24,4 +24,22 @@ public enum UnaryOperator
   {
     return this.op;
   }
+  
+  //returns true if the inoput string starts with a unary operator
+  public static boolean startsWithOperator(String in)
+  {
+    for(UnaryOperator o : UnaryOperator.values())
+      if(in.startsWith(o.toString()))
+      return true;
+    return false;
+  }
+  
+  //returns the operator that the expression starts with
+  public static UnaryOperator getOperator(String in)
+  {
+    for(UnaryOperator o : UnaryOperator.values())
+      if(in.startsWith(o.toString()))
+      return o;
+    return null;
+  }
 }

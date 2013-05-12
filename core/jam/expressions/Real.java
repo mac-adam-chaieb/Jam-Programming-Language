@@ -58,6 +58,11 @@ public class Real extends Expression
     return this.real.toString();
   }
   
+  public Int toInt()
+  {
+    return new Int(this.real.toBigInteger());
+  }
+  
   public boolean equals(Real b)
   {
     return (this.real.compareTo(b.real) == 0);

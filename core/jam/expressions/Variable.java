@@ -17,6 +17,7 @@ public class Variable extends Expression
   public Variable(String name)
   {
     this.name = name;
+    this.freeVariables.addAll(this.getFreeVariables());
   }
   
   public ArrayList<Variable> getFreeVariables()

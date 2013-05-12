@@ -27,7 +27,7 @@ public class BinaryOperation extends Expression
   
   public Value evaluate()
   {    
-    if(e1 instanceof Int && e2 instanceof Int)
+    if((e1 instanceof Int) && (e2 instanceof Int))
     {
       Int int1 = (Int)e1;
       Int int2 = (Int)e2;
@@ -46,7 +46,7 @@ public class BinaryOperation extends Expression
       if(this.operator.equals(BinaryOperator.MOD))
         return new Value<Int>(int1.mod(int2));
     }
-    else if(e1 instanceof Real && e2 instanceof Real)
+    else if((e1 instanceof Real) && (e2 instanceof Real))
     {
       Real real1 = (Real)e1;
       Real real2 = (Real)e1;

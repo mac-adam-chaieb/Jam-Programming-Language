@@ -26,7 +26,7 @@ public class Parser
     this.typeConstraints = ConstraintSet.EMPTY;
     this.typeContext = TypeContext.EMPTY;
     this.variableContext = new ArrayList<Binding>();
-    StringTokenizer tokenizer = new StringTokenizer(program,"; ",false);
+    StringTokenizer tokenizer = new StringTokenizer(program,";",false);
     while(tokenizer.hasMoreTokens())
       this.tokens.add(tokenizer.nextToken());
   }
@@ -38,6 +38,16 @@ public class Parser
       output += this.tokens.get(i)+",";
     output += this.tokens.get(this.tokens.size()-1)+"]";
     return output;
+  }
+  
+  public ArrayList<String> getTokens()
+  {
+    return this.tokens;
+  }
+  
+  public ArrayList<Expression> getExpressions()
+  {
+    return this.expressions;
   }
   
   //creates the expression object from the
@@ -53,26 +63,40 @@ public class Parser
       output = new Real(in);
     else if(core.jam.expressions.Boolean.isBoolean(input))
       output = new core.jam.expressions.Boolean(in);
-    else if(input.startsWith("fn"))
+    else if(input.startsWith(Keyword.FN.toString()))
     {
-      Variable var = new Variable(input.substring(3,input.indexOf("=>")).trim());
-      Expression e = this.makeExpression(input.substring(input.indexOf("=>")+2).trim());
+      Variable var = new Variable(input.substring(3,input.indexOf(Keyword.ARROW.toString())).trim());
+      Expression e = this.makeExpression(input.substring(input.indexOf(Keyword.ARROW.toString())+2).trim());
       output = new Function(var, e);
       this.typeContext.augment(var, e.type);
     }
-    else if(input.startsWith("if"))
-      output = new If(this.makeExpression(input.substring(3,input.indexOf("then")).trim()), 
-                    this.makeExpression(input.substring(input.indexOf("then")+4, input.indexOf("else")).trim()),
-                    this.makeExpression(input.substring(input.indexOf("else")+4).trim()));
-    else if(input.startsWith("rec"))
-      output = new Recursion(new Variable(input.substring(4,input.indexOf("=>")).trim()), this.makeExpression(input.substring(input.indexOf("=>")+2).trim()));
-    else if(input.startsWith("let"))
+    else if(input.startsWith(Keyword.IF.toString()))
+      output = new If(this.makeExpression(input.substring(3,input.indexOf(Keyword.THEN.toString())).trim()), 
+                    this.makeExpression(input.substring(input.indexOf(Keyword.THEN.toString())+4, input.indexOf(Keyword.ELSE.toString())).trim()),
+                    this.makeExpression(input.substring(input.indexOf(Keyword.ELSE.toString())+4).trim()));
+    else if(input.startsWith(Keyword.REC.toString()))
+      output = new Recursion(new Variable(input.substring(4,input.indexOf(Keyword.ARROW.toString())).trim()), 
+                             this.makeExpression(input.substring(input.indexOf(Keyword.ARROW.toString())+2).trim()));
+    else if(input.startsWith(Keyword.LET.toString()))
     {
-      Variable var = new Variable(input.substring(4,input.indexOf("=")).trim());
-      Expression e = this.makeExpression(input.substring(input.indexOf("=")+1, input.indexOf("in")).trim());
-      output = new Let(new Binding(var, e), this.makeExpression(input.substring(input.indexOf("in")+3).trim()));
+      Variable var = new Variable(input.substring(4,input.indexOf(Keyword.EQUALS.toString())).trim());
+      Expression e = this.makeExpression(input.substring(input.indexOf(Keyword.EQUALS.toString())+1, input.indexOf(Keyword.IN.toString())).trim());
+      output = new Let(new Binding(var, e), this.makeExpression(input.substring(input.indexOf(Keyword.IN.toString())+3).trim()));
       this.typeContext.augment(var, e.type);
     }
+    else if(Character.isDigit(in.charAt(0)))//if first character is a digit, but the expression is not a number
+    {
+      int index = BinaryOperator.index(input);
+      BinaryOperator operator = BinaryOperator.getOperatorAt(index, input);
+      output = new BinaryOperation(this.makeExpression(input.substring(0,index).trim()), 
+                                   this.makeExpression(input.substring(index+operator.op.length()).trim()),
+                                   operator);
+    }
+    else if(UnaryOperator.startsWithOperator(input))
+      output = new UnaryOperation(this.makeExpression(input.substring(UnaryOperator.getOperator(input).op.length())),
+                                  UnaryOperator.getOperator(input));
+    else if(Variable.isAllowed(input))
+      output = new Variable(input);
     this.typeConstraints = output.infer(this.typeContext);
     return output;
   }

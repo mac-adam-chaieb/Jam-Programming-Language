@@ -58,6 +58,11 @@ public class Int extends Expression
     return this.number.toString();
   }
   
+  public Real toReal()
+  {
+    return new Real(this.toString());
+  }
+  
   public boolean equals(Int b)
   {
     return (this.number.compareTo(b.number) == 0);

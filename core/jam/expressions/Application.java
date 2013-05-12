@@ -40,7 +40,7 @@ public class Application extends Expression
     if(e instanceof Function)
     {
       Function f = (Function)e;
-      return new Value(f.formula.substitute(this.e2.evaluate(), f.input).evaluate());
+      return new Value<Object>(f.formula.substitute(this.e2.evaluate(), f.input).evaluate());
     }
     else return null;
   }
