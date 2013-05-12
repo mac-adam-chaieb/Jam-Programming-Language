@@ -15,9 +15,9 @@ public class Parser
 {
   private ArrayList<String> tokens;
   private ArrayList<Expression> expressions;
-  private ConstraintSet typeConstraints;
-  private TypeContext typeContext;
-  private ArrayList<Binding> variableContext;
+  public ConstraintSet typeConstraints;
+  public TypeContext typeContext;
+  public ArrayList<Variable> variableContext;
   
   public Parser(String program)
   {
@@ -25,7 +25,7 @@ public class Parser
     this.expressions = new ArrayList<Expression>();
     this.typeConstraints = ConstraintSet.EMPTY;
     this.typeContext = TypeContext.EMPTY;
-    this.variableContext = new ArrayList<Binding>();
+    this.variableContext = new ArrayList<Variable>();
     StringTokenizer tokenizer = new StringTokenizer(program,";",false);
     while(tokenizer.hasMoreTokens())
       this.tokens.add(tokenizer.nextToken());
@@ -69,19 +69,26 @@ public class Parser
       Expression e = this.makeExpression(input.substring(input.indexOf(Keyword.ARROW.toString())+2).trim());
       output = new Function(var, e);
       this.typeContext.augment(var, e.type);
+      this.variableContext.add(var);
     }
     else if(input.startsWith(Keyword.IF.toString()))
       output = new If(this.makeExpression(input.substring(3,input.indexOf(Keyword.THEN.toString())).trim()), 
                     this.makeExpression(input.substring(input.indexOf(Keyword.THEN.toString())+4, input.indexOf(Keyword.ELSE.toString())).trim()),
                     this.makeExpression(input.substring(input.indexOf(Keyword.ELSE.toString())+4).trim()));
     else if(input.startsWith(Keyword.REC.toString()))
-      output = new Recursion(new Variable(input.substring(4,input.indexOf(Keyword.ARROW.toString())).trim()), 
-                             this.makeExpression(input.substring(input.indexOf(Keyword.ARROW.toString())+2).trim()));
+    {
+      Variable f = new Variable(input.substring(4,input.indexOf(Keyword.ARROW.toString())).trim());
+      output = new Recursion(f, this.makeExpression(input.substring(input.indexOf(Keyword.ARROW.toString())+2).trim()));
+      if(!this.variableContext.contains(f))
+        this.variableContext.add(f);
+    }
     else if(input.startsWith(Keyword.LET.toString()))
     {
       Variable var = new Variable(input.substring(4,input.indexOf(Keyword.EQUALS.toString())).trim());
       Expression e = this.makeExpression(input.substring(input.indexOf(Keyword.EQUALS.toString())+1, input.indexOf(Keyword.IN.toString())).trim());
       output = new Let(new Binding(var, e), this.makeExpression(input.substring(input.indexOf(Keyword.IN.toString())+3).trim()));
+      if(!this.variableContext.contains(var))
+        this.variableContext.add(var);
       this.typeContext.augment(var, e.type);
     }
     else if(Character.isDigit(in.charAt(0)))//if first character is a digit, but the expression is not a number
@@ -96,7 +103,12 @@ public class Parser
       output = new UnaryOperation(this.makeExpression(input.substring(UnaryOperator.getOperator(input).op.length())),
                                   UnaryOperator.getOperator(input));
     else if(Variable.isAllowed(input))
-      output = new Variable(input);
+    {
+      Variable v = new Variable(input);
+      output = v;
+      if(!this.variableContext.contains(v))
+        this.variableContext.add(v);
+    }
     this.typeConstraints = output.infer(this.typeContext);
     return output;
   }

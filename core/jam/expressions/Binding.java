@@ -16,6 +16,8 @@ public class Binding
     this.variable = variable;
     this.expression = expression;
     this.variable.type = this.expression.type;
+    this.variable.e = this.expression;
+    this.variable.free = false;
   }
   
   public String toString()

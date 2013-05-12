@@ -12,11 +12,13 @@ import java.util.ArrayList;
 public class Variable extends Expression
 {
   private String name;
-  private String[] restricted = {"if", "then", "else", "end", "fn", "let", "in", "rec"};//restricted variable names
+  public Expression e;
+  public boolean free = true;
   
   public Variable(String name)
   {
     this.name = name;
+    this.type = new AlphaType(0);
     this.freeVariables.addAll(this.getFreeVariables());
   }
   
@@ -29,7 +31,9 @@ public class Variable extends Expression
   
   public Value evaluate()
   {
-    return new Value<Boolean>(new Boolean("true"));
+    if(this.free)
+      return new Value<Variable>(this);
+    else return this.e.evaluate();
   }
   
   public Expression substitute(Expression sub, Variable variable)
@@ -58,8 +62,8 @@ public class Variable extends Expression
   
   public static boolean isAllowed(String name)
   {
-    for(Keyword s : Keyword.values())
-      if(name.equalsIgnoreCase(s.toString()))
+    for(Keyword k : Keyword.values())
+      if(name.equalsIgnoreCase(k.toString()) || Real.isReal(name) || Int.isInt(name) || name.contains("\\s") || name.contains(" "))
       return false;
     return true;
   }

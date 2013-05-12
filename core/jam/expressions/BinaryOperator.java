@@ -1,5 +1,7 @@
 package core.jam.expressions;
 
+import java.util.ArrayList;
+
 /*
  * @author Mohamed Adam Chaieb
  * 
@@ -51,5 +53,13 @@ public enum BinaryOperator
       if(in.startsWith(o.op, index))
       return o;
     return null;
+  }
+  
+  public static boolean startsWithOneOf(String in, ArrayList<Variable> vars)
+  {
+    for(Variable v : vars)
+      if(in.startsWith(v.toString()))
+      return true;
+    return false;
   }
 }

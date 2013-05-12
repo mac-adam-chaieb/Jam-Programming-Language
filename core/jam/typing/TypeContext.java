@@ -35,4 +35,18 @@ public class TypeContext
   {
     return this.context.get(variable);
   }
+  
+  public String toString()
+  {
+    if(this.context.isEmpty())
+      return "{}";
+    else
+    {
+      String output = "{";
+      for(Variable v : this.context.keySet())
+        output += v.toString()+" = "+this.context.get(v).toString()+",";
+      output += "}";
+      return new StringBuilder(output).deleteCharAt(output.length()-2).toString();
+    }
+  }
 }
