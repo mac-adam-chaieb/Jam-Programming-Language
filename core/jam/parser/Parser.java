@@ -69,7 +69,8 @@ public class Parser
       Expression e = this.makeExpression(input.substring(input.indexOf(Keyword.ARROW.toString())+2).trim());
       output = new Function(var, e);
       this.typeContext.augment(var, e.type);
-      this.variableContext.add(var);
+      if(!this.variableContext.contains(var))
+        this.variableContext.add(var);
     }
     else if(input.startsWith(Keyword.IF.toString()))
       output = new If(this.makeExpression(input.substring(3,input.indexOf(Keyword.THEN.toString())).trim()), 

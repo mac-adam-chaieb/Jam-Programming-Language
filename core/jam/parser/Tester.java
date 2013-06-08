@@ -1,7 +1,6 @@
 package core.jam.parser;
 
 import core.jam.expressions.*;
-import core.jam.typing.*;
 
 public class Tester
 {

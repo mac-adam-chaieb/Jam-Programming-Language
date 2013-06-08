@@ -1,6 +1,5 @@
 package core.jam.typing;
 
-import core.jam.expressions.*;
 /*
  * @author Mohamed Adam Chaieb
  * 
@@ -9,18 +8,18 @@ import core.jam.expressions.*;
 
 public class RealType extends Type
 {
-  public Type substitute(Type sub, Type t)
-  {
-    return this;
-  }
-  
-  public boolean equals(Type other)
-  {
-    return (other instanceof RealType);
-  }
-  
-  public String toString()
-  {
-    return "real";
-  }
+	public Type substitute(Type sub, Type t)
+	{
+		return this;
+	}
+
+	public boolean equals(Type other)
+	{
+		return (other instanceof RealType);
+	}
+
+	public String toString()
+	{
+		return "real";
+	}
 }

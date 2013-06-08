@@ -44,7 +44,7 @@ public class TypeContext
     {
       String output = "{";
       for(Variable v : this.context.keySet())
-        output += v.toString()+" = "+this.context.get(v).toString()+",";
+        output += v.toString()+" : "+this.context.get(v).toString()+",";
       output += "}";
       return new StringBuilder(output).deleteCharAt(output.length()-2).toString();
     }

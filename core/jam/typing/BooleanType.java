@@ -1,6 +1,5 @@
 package core.jam.typing;
 
-import core.jam.expressions.*;
 /*
  * @author Mohamed Adam Chaieb
  * 
@@ -9,18 +8,18 @@ import core.jam.expressions.*;
 
 public class BooleanType extends Type
 {
-  public Type substitute(Type sub, Type t)
-  {
-    return this;
-  }
-  
-  public boolean equals(Type other)
-  {
-    return (other instanceof BooleanType);
-  }
-  
-  public String toString()
-  {
-    return "boolean";
-  }
+	public Type substitute(Type sub, Type t)
+	{
+		return this;
+	}
+
+	public boolean equals(Type other)
+	{
+		return (other instanceof BooleanType);
+	}
+
+	public String toString()
+	{
+		return "boolean";
+	}
 }
