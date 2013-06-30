@@ -1,4 +1,4 @@
-package core.jam.expressions;
+package core.jam.syntax;
 
 public interface Evaluable
 {

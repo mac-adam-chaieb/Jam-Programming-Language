@@ -1,4 +1,4 @@
-package core.jam.expressions;
+package core.jam.syntax;
 
 import core.jam.typing.*;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class If extends Expression
 	public Value evaluate()
 	{
 		Value e = condition.evaluate();
-		if(e instanceof core.jam.expressions.Boolean)
+		if(e instanceof core.jam.syntax.Boolean)
 		{
 			if(e.equals(Boolean.TRUE))
 				return e1.evaluate();

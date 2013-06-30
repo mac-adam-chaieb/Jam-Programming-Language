@@ -1,4 +1,4 @@
-package core.jam.expressions;
+package core.jam.syntax;
 
 import core.jam.typing.*;
 import java.math.BigDecimal;
