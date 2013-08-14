@@ -1,5 +1,6 @@
-package jam.core.parser;
+package testing;
 
+import jam.core.parser.Parser;
 import jam.core.syntax.*;
 
 public class Tester
